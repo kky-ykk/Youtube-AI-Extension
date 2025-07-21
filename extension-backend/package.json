@@ -1,0 +1,24 @@
+{
+  "name": "youtubeqa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/core": "^0.3.62",
+    "@langchain/groq": "^0.2.3",
+    "@langchain/langgraph": "^0.3.8",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "langchain": "^0.3.29",
+    "transcribe2texts": "^1.0.6",
+    "youtube-dl-exec": "^3.0.22",
+    "zod": "^3.25.76"
+  }
+}

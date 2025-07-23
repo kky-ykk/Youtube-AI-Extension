@@ -1,63 +1,77 @@
 # 🎥 AI Assistant for YouTube Videos – Chrome Extension
 
-This project is a **Google Chrome Extension** built to help users interact with YouTube videos using AI. The extension activates on any YouTube video and allows users to **ask questions** about the video's content, making it easier to **locate specific topics or concepts** in long-form educational videos.
+This is a **Google Chrome Extension** designed to help users interact with YouTube videos using AI. It enables users to **ask questions** about a video's content and receive intelligent, context-aware answers — ideal for navigating long-form educational videos.
 
 ---
 
-## 🚀 Problem Solved
+## 🧩 Why This Matters
 
-YouTube is an incredible source for learning, but long videos often make it hard to find whether a specific topic is discussed. This extension solves that problem by allowing users to **ask direct questions** and receive **AI-generated answers** based on the video's content.
+YouTube is a powerful learning platform, but lengthy videos can make it difficult to locate specific topics. This extension solves that problem by allowing users to **query the video content directly**, using AI to pinpoint relevant answers.
 
 ---
 
 ## ⚙️ How It Works
 
-### 🧠 Backend (Node.js + Langchain)
+### 🧠 Backend (Node.js + LangChain)
 
-1. **Video URL Detection**: Backend receives YouTube video URL via API.
-2. **Audio Extraction**: The video is processed to extract its audio.
-3. **Transcription**: Audio is transcribed to text using a custom NPM package:  
-  [`transcribe2texts`](https://www.npmjs.com/package/transcribe2texts)
-4. **LangChain AI Agent**:
-  - An agent is initialized using Langchain.
-  - Custom tools are defined:
-    - `getText`: Accesses the transcribed text.
-    - `getAnswer`: Answers questions based on the transcript.
-    - `getVideo`: Downloads and prepares video/audio data.
-5. **API Endpoints**:
-  - `POST /initialize` – Initializes the AI agent with the video URL.
-  - `POST /ask` – Accepts a user question and returns an AI-generated answer.
+1. **Video URL Detection**  
+   Receives YouTube video URL via API.
+2. **Audio Extraction**  
+   Processes the video to extract audio data.
+3. **Transcription**  
+   Converts audio to text using [`transcribe2texts`](https://www.npmjs.com/package/transcribe2texts).
+4. **LangChain AI Agent**  
+   Initializes a custom LangChain agent with tools:
+   - `getText`: Retrieves transcript.
+   - `getAnswer`: Answers questions based on the transcript.
+   - `getVideo`: Downloads and prepares media content.
+5. **API Endpoints**  
+   - `POST /initialize`: Initializes the agent with a video.
+   - `POST /ask`: Accepts user questions and returns AI-generated answers.
 
 ### 🖼️ Frontend (React.js Chrome Extension)
 
-> While the backend powers the intelligence, the frontend delivers a smooth user experience directly inside Chrome.
+- Detects YouTube video pages (`youtube.com/watch`)
+- Calls `initialize` API when a new video is loaded
+- Shows chat interface once AI agent is ready
+- Sends user questions to the `ask` API
+- Supports follow-up questions and persistent sessions
+- Clean UI with scrollable, stateful chat interface
 
-- Detects YouTube video pages (`youtube.com/watch`).
-- Calls `initialize` API when a new video is detected.
-- Displays chat interface after agent is ready.
-- Supports asking follow-up questions via the `ask` API.
-- Includes session persistence, scrollable chat, and loading state.
+---
+
+## 🧠 Key Features
+
+- ✅ **Smart Video Detection**  
+  Detects YouTube video changes using multiple strategies.
+
+- 💾 **Session Persistence**  
+  Remembers chat history even after closing the extension popup.
+
+- 🌐 **Cross-tab Awareness**  
+  Background scripts manage state across multiple tabs.
+
+- 🧹 **Memory Management**  
+  Automatically cleans up data when navigating away from YouTube.
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Backend:**
+**Backend**
 - Node.js
 - JavaScript
-- Langchain (AI Agent)
-- `transcribe2texts` (NPM package for audio transcription)
+- LangChain (AI Agent Framework)
+- [`transcribe2texts`](https://www.npmjs.com/package/transcribe2texts)
 
-**Frontend:**
+**Frontend**
 - React.js (Popup UI)
-- JavaScript (Content and background scripts)
+- JavaScript (Content + Background Scripts)
 - Chrome Manifest V3
 
 ---
 
-## 🧠 Smart Features
+## 📸 Application Screenshot
 
-- **Robust YouTube Detection**: Uses multiple methods to reliably detect video changes.
-- **Session Persistence**: Chat history retained across extension open/close events.
-- **Cross-tab Awareness**: Background scripts coordinate multiple tabs.
-- **Memory Cleanup**: Automatically clears data when navigating away from YouTube.
+![AI Assistant Chrome Extension Screenshot](./application.png)
+
